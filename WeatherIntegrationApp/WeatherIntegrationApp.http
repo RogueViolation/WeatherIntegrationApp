@@ -1,0 +1,6 @@
+@WeatherIntegrationApp_HostAddress = http://localhost:5095
+
+GET {{WeatherIntegrationApp_HostAddress}}/v1/WeatherForecast/GetCurrentWeather?locations=Vilnius
+Accept: application/json
+
+###
