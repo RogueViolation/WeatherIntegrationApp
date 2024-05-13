@@ -24,6 +24,7 @@ namespace WeatherIntegrationApp.Controllers
         [HttpGet("GetCurrentWeather")]
         public ActionResult Get([FromQuery]List<string> locations)
         {
+            _logger.LogInformation($"Received GetCurrentWeather request from {HttpContext.Connection.RemoteIpAddress}.");
             try
             {
                 if (locations.Count == 0)
@@ -45,6 +46,7 @@ namespace WeatherIntegrationApp.Controllers
         [HttpPost("CreateWeatherFile")]
         public ActionResult Post([FromQuery] List<string> locations)
         {
+            _logger.LogInformation($"Received CreateWeatherFile request from {HttpContext.Connection.RemoteIpAddress}.");
             try
             {
                 if (locations.Count == 0)
@@ -64,6 +66,7 @@ namespace WeatherIntegrationApp.Controllers
         [HttpGet("Example")]
         public ActionResult PostExample()
         {
+            _logger.LogInformation($"Received Example request from {HttpContext.Connection.RemoteIpAddress}.");
             try
             {
                 //This is hardcoded because the task emphasizes this.
