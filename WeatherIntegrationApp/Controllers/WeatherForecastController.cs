@@ -1,4 +1,5 @@
 using DataAccess;
+using DataAccess.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Utilities;
 
@@ -25,6 +26,10 @@ namespace WeatherIntegrationApp.Controllers
         {
             try
             {
+                if (locations.Count == 0)
+                {
+                    return StatusCode(400, ErrorMessage.CreateErrorObject("Locations list is empty", Empty));
+                }
                 //Return Ok result with the JSON data
                 return Ok(_processWrapper.GenerateWeatherFormatJSON(locations));
             }
@@ -32,7 +37,7 @@ namespace WeatherIntegrationApp.Controllers
             catch (Exception e)
             {
                 _logger.LogError($"Encountered error while processing request GetCurrentWeather. {e.Message}");
-                return StatusCode(500);
+                return StatusCode(500, ErrorMessage.CreateErrorObject(e.Message, locations));
             }
         }
 
@@ -42,12 +47,16 @@ namespace WeatherIntegrationApp.Controllers
         {
             try
             {
+                if (locations.Count == 0)
+                {
+                    return StatusCode(400, ErrorMessage.CreateErrorObject("Locations list is empty.", Empty));
+                }
                 return Ok(_processWrapper.GenerateWeatherJSONFile(locations));
             }
             catch (Exception e)
             {
                 _logger.LogError($"Encountered error while processing request CreateWeatherFile. {e.Message}");
-                return StatusCode(500);
+                return StatusCode(500, ErrorMessage.CreateErrorObject(e.Message, locations));
             }
         }
 
@@ -63,8 +72,20 @@ namespace WeatherIntegrationApp.Controllers
             catch (Exception e)
             {
                 _logger.LogError($"Encountered error while processing request Example. {e.Message}");
-                return StatusCode(500);
+                return StatusCode(500, ErrorMessage.CreateErrorObject(e.Message, new List<string> { "Vilnius", "Kaunas", "Klaipeda" }));
             }
+        }
+    }
+
+    class ErrorMessage
+    {
+        public string Message { get; set; }
+        public DateTime Time { get; set; }
+        public object Arguments { get; set; }
+
+        public static ErrorMessage CreateErrorObject(string message, object args) 
+        { 
+            return new ErrorMessage { Message = message, Time = DateTime.Now, Arguments = args};
         }
     }
 }
