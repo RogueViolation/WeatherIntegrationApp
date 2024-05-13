@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities", "ConfigurationR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{8C950CC9-AF8F-4EB9-859D-6FA012BFC40E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processing", "Processing\Processing.csproj", "{36070CA6-0851-402C-8D6E-22BAEE5AF47F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processing", "Processing\Processing.csproj", "{36070CA6-0851-402C-8D6E-22BAEE5AF47F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
