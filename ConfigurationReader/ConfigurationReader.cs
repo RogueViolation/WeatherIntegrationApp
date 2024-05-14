@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 
 //Used to read secrets/configurations
-namespace Utility
+namespace Utilities
 {
     public class ConfigurationReader : IConfigurationReader
     {
